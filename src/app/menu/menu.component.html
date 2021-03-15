@@ -1,1 +1,16 @@
-<p>menu works!</p>
+<div class="container" fxLayout='column' fxLayoutGap='10px'>
+    <div fxFLex *ngIf="items">
+      <mat-grid-list cols="2" rowHeight="200px" >
+        <mat-grid-tile >
+          <img height="200px" src="" alt="hola">
+          <mat-grid-tile-footer>
+            <h1>hola</h1>
+          </mat-grid-tile-footer>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+     <div fxFlex [hidden]="items"> 
+      <mat-spinner></mat-spinner><h4>Loading .  .  .  Please wait.</h4>
+     </div >
+    
+    </div>
