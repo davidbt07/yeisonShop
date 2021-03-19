@@ -1,19 +1,15 @@
 <!-- Toolbar -->
-<mat-toolbar color="primary">
-  <span><img src="/assets/images/logo2.jpg" height=40 width=40>  Yeison Shop</span>
+<mat-toolbar class="toolbar">
+  <span><img src="/assets/images/logo2.jpg" height=40 width=40> Yeison Shop</span>
 </mat-toolbar>
 
-<div class="container jumbotron"
-    fxLayout="row"
-    fxLayout.sm="column" 
-    fxLayout.xs="column" 
-    fxLayoutAlign.xs="start center"
-    fxLayoutAlign.sm="start center" 
-    fxLayoutAlign.gt-sm="center center" 
-    fxLayoutGap="10px">
-
-  <div fxFlex fxFlex.gt-sm="50%">
-    <h1>Aquí para Buscar</h1>
+<div class="container jumbotron" fxLayout="column wrap" fxLayoutGap="20px" fxLayoutAlign="none none">
+  <div fxFlex fxFlexAlign="center" >
+      <input type="search" placeholder="Buscar productos..." class="search">
+      <fa-icon [icon]="faSearch"></fa-icon>
   </div>
-  <div fxFlex></div>
+
+  <div fxFlex fxFlexAlign="center" class="btn">
+    <button mat-button type="submit" class="background-primary text-floral-white">Buscar</button>
+  </div>
 </div>
