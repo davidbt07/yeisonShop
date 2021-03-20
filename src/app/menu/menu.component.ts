@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-menu',
@@ -6,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
-  items = [3,2]
+  faSearch = faSearch;
+  items = ""
   constructor() { }
 
   ngOnInit(): void {

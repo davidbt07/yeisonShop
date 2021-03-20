@@ -1,0 +1,11 @@
+$background-dark: #512DA8;
+$background-light: #9575CD;
+
+@mixin zero-margin($pad-up-down, $pad-left-right) {
+    margin: 0px auto;
+    padding: $pad-up-down $pad-left-right;
+  }
+.details{
+    @include zero-margin(60px, 20px);
+    min-height: 100px;
+}

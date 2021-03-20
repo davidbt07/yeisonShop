@@ -1,15 +1,6 @@
 <!-- Toolbar -->
 <mat-toolbar class="toolbar">
-  <span><img src="/assets/images/logo2.jpg" height=40 width=40> Yeison Shop</span>
+  <span><img src="/assets/images/logo2.jpg" height=40 width=40> </span>
+  <a routerLink="/menu">Yeison Shop</a>
+  <a mat-button routerLink='/details'><span class="fa fa-home fa-lg"></span> Details</a>
 </mat-toolbar>
-
-<div class="container jumbotron" fxLayout="column wrap" fxLayoutGap="20px" fxLayoutAlign="none none">
-  <div fxFlex fxFlexAlign="center" >
-      <input type="search" placeholder="Buscar productos..." class="search">
-      <fa-icon [icon]="faSearch"></fa-icon>
-  </div>
-
-  <div fxFlex fxFlexAlign="center" class="btn">
-    <button mat-button type="submit" class="background-primary text-floral-white">Buscar</button>
-  </div>
-</div>

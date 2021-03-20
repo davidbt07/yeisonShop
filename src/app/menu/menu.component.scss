@@ -1,0 +1,18 @@
+$background-dark: #512DA8;
+$background-light: #9575CD;
+
+@mixin zero-margin($pad-up-down, $pad-left-right) {
+    margin: 0px auto;
+    padding: $pad-up-down $pad-left-right;
+  }
+  .jumbotron {
+    @include zero-margin(50px,20px);
+    background: $background-light ;
+    color:floralwhite;
+    min-height: 100px;
+  }
+  .search{
+  margin-top: 20px;
+  margin-right: 10px;
+  padding: 10px 50px 10px 10px;
+  }

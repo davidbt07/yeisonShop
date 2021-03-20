@@ -1,16 +1,31 @@
+<div class="container jumbotron" fxLayout="column wrap" fxLayoutGap="20px" fxLayoutAlign="none none">
+  <div fxFlex fxFlexAlign="center">
+    <input type="search" placeholder="Buscar productos..." class="search">
+    <fa-icon [icon]="faSearch"></fa-icon>
+  </div>
+
+  <div fxFlex fxFlexAlign="center" class="btn">
+    <button mat-button type="submit" class="background-primary text-floral-white">Buscar</button>
+  </div>
+</div>
+
 <div class="container" fxLayout='column' fxLayoutGap='10px'>
-    <div fxFLex *ngIf="items">
-      <mat-grid-list cols="2" rowHeight="200px" >
-        <mat-grid-tile >
-          <img height="200px" src="" alt="hola">
-          <mat-grid-tile-footer>
-            <h1>hola</h1>
-          </mat-grid-tile-footer>
-        </mat-grid-tile>
-      </mat-grid-list>
-    </div>
-     <div fxFlex [hidden]="items"> 
-      <mat-spinner></mat-spinner><h4>Loading .  .  .  Please wait.</h4>
-     </div >
-    
-    </div>
+  <div fxFLex *ngIf="items"><!--*ngIf="items"-->
+    <mat-card><!--*ngFor='let item of items' [routerLink]="['/details', item.id]"-->
+      <mat-card-header>
+        <mat-card-title>
+          <h3>Nombre</h3><!--{{item.name | uppercase}}-->
+          <img mat-card-image src="" alt="nombre"><!-- "{{baseURL + item.image}}"   {{item.name}}-->
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Precio</p><!--{{item.price}}, {{item.reseller}}-->
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div fxFlex [hidden]="items">
+    <mat-spinner></mat-spinner>
+    <h4>Loading . . . Please wait.</h4>
+  </div>
+
+</div>
