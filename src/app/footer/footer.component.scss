@@ -1,4 +1,4 @@
-$background-light: #9575CD;
+$background-light: white;
 
 @mixin zero-margin($pad-up-down, $pad-left-right) {
     margin: 0px auto;
@@ -7,8 +7,7 @@ $background-light: #9575CD;
 
 .footer{
     background-color: $background-light;
-    @include zero-margin(15px, 0px);
-    position: fixed;
+    @include zero-margin(15px, 10px);
     bottom: 0;
     width: 100%;
 }

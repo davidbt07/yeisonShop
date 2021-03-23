@@ -6,13 +6,13 @@ $background-light: #9575CD;
     padding: $pad-up-down $pad-left-right;
   }
   .jumbotron {
-    @include zero-margin(50px,20px);
-    background: $background-light ;
-    color:floralwhite;
+    @include zero-margin(61px,0px);
+    background: #E5E5E1;
+    color: white;
     min-height: 100px;
   }
-  .search{
-  margin-top: 20px;
-  margin-right: 10px;
-  padding: 10px 50px 10px 10px;
+  .myCard{
+    margin: 0 0 0 0;
+    width: 250px;
+    height: 320px;
   }

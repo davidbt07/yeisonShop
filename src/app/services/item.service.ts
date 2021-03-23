@@ -18,8 +18,14 @@ export class ItemService {
     return this.http.get<Query>(address);
   }
 
+  /*getSellers(title):Observable<Seller[]>{
+    let address = "https://api.mercadolibre.com/users/";
+    let users = this.getItems(title);
+    return this.http.get<Seller[]>();
+  }*/
+
   getSeller(id:string): Observable<Seller>{
     let address = "https://api.mercadolibre.com/users/" + id;
-    return this.http.get<Seller>(address)
+    return this.http.get<Seller>(address);
   }
 }

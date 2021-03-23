@@ -1,6 +1,10 @@
 <!-- Toolbar -->
 <mat-toolbar class="toolbar">
-  <span><img src="/assets/images/logo2.jpg" height=40 width=40> </span>
+  <span><img src="/assets/images/logo2.jpg" height=40 width=40></span>
   <a routerLink="/menu">Yeison Shop</a>
-  <a mat-button routerLink='/details'><span class="fa fa-home fa-lg"></span> Details</a>
+  <span class="spacer"></span>
+  <mat-form-field fxFlex>
+    <input type="search" placeholder="Buscar productos..." style="height: 40px; width: 200px">
+    <button class="button" mat-button type="submit">Buscar</button>
+  </mat-form-field>
 </mat-toolbar>
