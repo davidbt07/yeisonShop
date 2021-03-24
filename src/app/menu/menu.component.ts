@@ -1,11 +1,11 @@
-import { Component, ElementRef, OnInit, ViewChild, ChangeDetectorRef, Input } from '@angular/core';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { Component, ElementRef, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { ItemService } from '../services/item.service';
 import { Query } from '../models/query';
 import { Item } from '../models/item';
 import { Observable } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { UpdateService } from '../services/update.service';
 
 
 @Component({
@@ -15,29 +15,26 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class MenuComponent implements OnInit {
 
-  @Input() items:Item[];
-
-  faSearch = faSearch;
+  items:Item[];
   query: Query;
-  //items: Item[];
   seller: string[];
 
   @ViewChild("MatPaginator") paginator: MatPaginator;
   obs: Observable<any>;
   dataSource: MatTableDataSource<Item>;
 
-  //productsList: Product[]= [];items
   pagedList: Item[]= []; 
-  breakpoint: number = 3;  //to adjust to screen
+  breakpoint: number = 3;
   // MatPaginator Inputs
   length: number = 0;
   pageSize: number = 3;  //displaying three cards each row
   pageSizeOptions: number[] = [3, 6, 9, 12];
 
-  constructor(private itemService: ItemService, private changeDetectorRef: ChangeDetectorRef) { }
+  constructor(private itemService: ItemService, private changeDetectorRef: ChangeDetectorRef, private update: UpdateService) { }
 
   ngOnInit(): void {
-    this.itemService.getItems("iphone", "0").subscribe( (query) =>  {this.query = query; this.items = this.query.results; this.pagedList = this.items.slice(0, 3); this.length = this.items.length; this.changeDetectorRef.detectChanges() ; this.dataSource = new MatTableDataSource<Item>(this.items); this.dataSource.paginator = this.paginator; this.obs = this.dataSource.connect();} );
+    this.update.change.subscribe((items) => { this.items = items; });
+    this.itemService.getItems("iphone", "0").subscribe( (items) =>  {this.items = items.results; this.pagedList = this.items.slice(0, 3); this.length = this.items.length; this.changeDetectorRef.detectChanges() ; this.dataSource = new MatTableDataSource<Item>(this.items); this.dataSource.paginator = this.paginator; this.obs = this.dataSource.connect();} );
   }
 
   ngOnDestroy() {
@@ -45,10 +42,5 @@ export class MenuComponent implements OnInit {
       this.dataSource.disconnect(); 
     }
   }
-
-  search(){
-    console.log("Actualizando hola");
-  }
   
-
 }

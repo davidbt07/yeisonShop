@@ -4,7 +4,7 @@ import { Form } from '../models/form';
 import { ItemService } from '../services/item.service';
 import { Query } from '../models/query';
 import { Item } from '../models/item';
-import { MenuComponent } from '../menu/menu.component'
+import { UpdateService } from '../services/update.service';
 
 
 @Component({
@@ -15,8 +15,7 @@ import { MenuComponent } from '../menu/menu.component'
 export class HeaderComponent implements OnInit {
 
   @Output() items: Item[];
-  @Input() menuComponent: MenuComponent;
-
+  
   searchForm: FormGroup;
   feedbackCopy: Form;
   feedback: Form;
@@ -24,7 +23,7 @@ export class HeaderComponent implements OnInit {
 
   query:Query;
 
-  constructor(private fb: FormBuilder, private itemService: ItemService) {
+  constructor(private fb: FormBuilder, private itemService: ItemService, private update: UpdateService) {
     this.createForm();
    }
 
@@ -35,23 +34,11 @@ export class HeaderComponent implements OnInit {
     this.searchForm = this.fb.group({
       title:['', []]
     });
-
-    this.searchForm.valueChanges.subscribe(data => this.onValueChanged(data));
-    this.onValueChanged();
-  }
-
-  onValueChanged(data?: any){
-    if(!this.searchForm) {
-      return;
-    }
   }
 
   onSubmit(){
-    this.feedbackCopy = this.searchForm.value;
     this.title = this.searchForm.value.title;
-    console.log("Este es el submit: ", this.title);
-    this.menuComponent.search();
-    this.itemService.getItems(this.title, "0").subscribe( (query) =>  {this.query = query; this.items = this.query.results; console.log(this.items);} );
+    this.update.update(this.title);
     this.searchForm.reset({
       title:''
     });
