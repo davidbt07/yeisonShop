@@ -5,7 +5,8 @@
       <mat-grid-tile
       [colspan]="1"
       [rowspan]="1"
-      *ngFor='let item of query.results'>
+      *ngFor='let item of items'
+      [routerLink]="['/details', item.id]">
         <mat-card class="myCard"><!--*ngFor='let item of items' [routerLink]="['/details', item.id]"-->
           <mat-card-header> 
             <mat-card-title>
@@ -22,22 +23,11 @@
         </mat-card>
       </mat-grid-tile>
     </mat-grid-list>
-    
-    <!--<mat-grid-list cols="3" rowHeight="200px" >
-      <mat-grid-tile *ngFor='let item of query.results'>
-        <mat-grid-tile-header>
-          <h1>{{item.title | uppercase}}</h1>
-        </mat-grid-tile-header>
-        <img height="200px" src="{{item.thumbnail}}" alt={{item.title}}>
-        <mat-grid-tile-footer>
-          <h3>{{item.price}} $</h3>
-        </mat-grid-tile-footer>
-      </mat-grid-tile>
-    </mat-grid-list>-->
   </div>
-  <!--<div fxFlex [hidden]="items">
+<br>
+  <!--<div fxFlex [hidden]="query">
     <mat-spinner></mat-spinner>
     <h4>Loading . . . Please wait.</h4>
   </div>-->
-
 </div>
+<mat-paginator #MatPaginator [pageSizeOptions]="[5, 10, 25, 50]"></mat-paginator>

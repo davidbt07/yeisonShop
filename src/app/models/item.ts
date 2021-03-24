@@ -1,4 +1,5 @@
-import { Seller } from './seller'
+import { Seller } from './seller';
+import { Description } from './description';
 
 export class Item{
     id: string;
@@ -6,4 +7,5 @@ export class Item{
     thumbnail: string;
     seller: Seller;
     price: string;
+    description: Description;
 }

@@ -1,5 +1,26 @@
 <div class="container details" fxLayout="column wrap" fxLayoutGap="30px" fxLayoutAlign="none none"> 
-    <div fxFlex fxFlexAlign="center">
+    <div fxFlex fxFlexAlign="center" [hidden]="item">
         <mat-spinner></mat-spinner><h4>Loading .  .  .  Please wait.</h4>
     </div>
+    <mat-card *ngIf="item">
+        <mat-card-header>
+            <mat-card-title>
+              <h3>{{item.title | uppercase}}</h3>
+              <img mat-card-image src="{{item.thumbnail}}" alt={{item.title}}>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>{{item.seller}}</p>
+            <p>{{item.price}}</p>
+          </mat-card-content>
+          <mat-card-footer>
+            <div [hidden]="item.description">
+                <mat-spinner></mat-spinner><h4>Loading .  .  .  Please wait.</h4>
+            </div>
+              <p *ngIf="item.description">{{item.description.plain_text}}</p>
+          </mat-card-footer>
+          <mat-card-actions>
+            <!--<button mat-button (click)="goBack()">BACK</button>-->
+          </mat-card-actions>
+    </mat-card>
 </div >

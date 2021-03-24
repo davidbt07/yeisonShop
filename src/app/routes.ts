@@ -5,6 +5,6 @@ import { DetailsComponent } from './details/details.component';
 
 export const routes: Routes = [
     {path: 'menu', component: MenuComponent},
-    {path: 'details', component: DetailsComponent},
+    {path: 'details/:id', component: DetailsComponent},
     {path: '', redirectTo: '/menu', pathMatch: 'full'}
 ]

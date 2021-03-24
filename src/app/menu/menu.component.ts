@@ -1,7 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { ItemService } from '../services/item.service';
-import { Query } from '../models/query'
+import { Query } from '../models/query';
+import { Item } from '../models/item';
+import { Observable } from 'rxjs';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+
 
 @Component({
   selector: 'app-menu',
@@ -11,12 +16,23 @@ import { Query } from '../models/query'
 export class MenuComponent implements OnInit {
   faSearch = faSearch;
   query: Query;
-  items = "";
+  items: Item[];
   seller: string[];
-  constructor(private itemService: ItemService) { }
+
+  @ViewChild("MatPaginator") paginator: MatPaginator;
+  obs: Observable<any>;
+  dataSource: MatTableDataSource<Item>;
+
+  constructor(private itemService: ItemService, private changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
-    this.itemService.getItems("iphone").subscribe( (query) =>  {this.query = query; this.itemService.getSeller(this.query.results[1].seller.id).subscribe()} );
+    this.itemService.getItems("iphone").subscribe( (query) =>  {this.query = query; this.items = this.query.results; this.changeDetectorRef.detectChanges(); ; this.dataSource = new MatTableDataSource<Item>(this.items); this.dataSource.paginator = this.paginator; this.obs = this.dataSource.connect();} );
+  }
+
+  ngOnDestroy() {
+    if (this.dataSource) { 
+      this.dataSource.disconnect(); 
+    }
   }
 
 }
