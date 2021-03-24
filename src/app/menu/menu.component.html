@@ -1,7 +1,7 @@
 
 <div class="jumbotron">
   <div style="width: 90%; margin: 0;"><!--*ngIf="items"-->
-    <mat-grid-list cols="3">
+    <mat-grid-list [cols]="breakpoint">
       <mat-grid-tile
       [colspan]="1"
       [rowspan]="1"
@@ -30,4 +30,8 @@
     <h4>Loading . . . Please wait.</h4>
   </div>-->
 </div>
-<mat-paginator #MatPaginator [pageSizeOptions]="[5, 10, 25, 50]"></mat-paginator>
+<mat-paginator #MatPaginator [length]="length"
+[pageSize]="pageSize"
+[pageSizeOptions]="pageSizeOptions"
+></mat-paginator>
+

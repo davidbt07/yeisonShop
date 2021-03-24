@@ -13,18 +13,17 @@ import { Description } from '../models/description';
 export class DetailsComponent implements OnInit {
 
   item: Item;
-  description: Description;
+  description: Description = null;
+  
   
 
   constructor(private itemService: ItemService,
-    private lotation: Location,
+    private location: Location,
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     let id = this.route.snapshot.params['id'];
-    this.itemService.getItem(id).subscribe((item) => { this.item = item; this.item.description = this.description; this.itemService.getDescriptionItem(id).subscribe((description) => { this.item.description = description; console.log(this.item.description.plain_text); }); });
-    this.itemService.getDescriptionItem(id).subscribe((description) => { this.item.description = description; console.log(this.item.description.plain_text); });
-    
+    this.itemService.getItem(id).subscribe((item) => { this.item = item; this.itemService.getDescriptionItem(id).subscribe((description) => { this.item.description = description;}); });
   }
 
 }

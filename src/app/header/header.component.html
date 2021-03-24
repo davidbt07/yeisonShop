@@ -3,8 +3,12 @@
   <span><img src="/assets/images/logo2.jpg" height=40 width=40></span>
   <a routerLink="/menu">Yeison Shop</a>
   <span class="spacer"></span>
-  <mat-form-field fxFlex>
-    <input type="search" placeholder="Buscar productos..." style="height: 40px; width: 200px">
-    <button class="button" mat-button type="submit">Buscar</button>
-  </mat-form-field>
+  <div>
+    <form novalidate [formGroup]="searchForm" #fform="ngForm" (ngSubmit)="onSubmit()"> 
+      <mat-form-field fxFlex>
+        <input matInput formControlName="title" type="search" placeholder="Buscar productos..." style="height: 40px; width: 200px">
+        <button mat-button type="submit" class="button">Buscar</button>
+      </mat-form-field>
+    </form>
+  </div>
 </mat-toolbar>

@@ -14,9 +14,6 @@
             <p>{{item.price}}</p>
           </mat-card-content>
           <mat-card-footer>
-            <div [hidden]="item.description">
-                <mat-spinner></mat-spinner><h4>Loading .  .  .  Please wait.</h4>
-            </div>
               <p *ngIf="item.description">{{item.description.plain_text}}</p>
           </mat-card-footer>
           <mat-card-actions>

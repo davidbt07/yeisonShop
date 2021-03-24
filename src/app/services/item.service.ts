@@ -16,8 +16,8 @@ export class ItemService {
 
   constructor(private http: HttpClient) { }
 
-  getItems(title:string): Observable<Query>{
-    let address = this.urlItems + "search?q=" + title + "&paging&offset=6&limit=20#json";  
+  getItems(title:string, offset: string): Observable<Query>{
+    let address = this.urlItems + "search?paging&limit=50&q=" + title + "&offset=" + offset +"#json";  
     return this.http.get<Query>(address);
   }
 
@@ -30,14 +30,6 @@ export class ItemService {
     let addressDescription = this.urlItem + id + "/description";
     return this.http.get<Description>(addressDescription);
   }
-
-  /*getSellers(title):Observable<Seller[]>{
-    let address = "https://api.mercadolibre.com/users/";
-    let users = this.getItems(title);
-    return this.http.get<Seller[]>();
-
-    https://api.mercadolibre.com/sites/MCO/search?q=iphone&paging&offset=50#json
-  }*/
 
   getSeller(id:string): Observable<Seller>{
     let address = "https://api.mercadolibre.com/users/" + id;
