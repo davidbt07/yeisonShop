@@ -33,8 +33,8 @@ export class MenuComponent implements OnInit {
   constructor(private itemService: ItemService, private changeDetectorRef: ChangeDetectorRef, private update: UpdateService) { }
 
   ngOnInit(): void {
-    this.update.change.subscribe((items) => { this.items = items; });
-    this.itemService.getItems("iphone", "0").subscribe( (items) =>  {this.items = items.results; this.pagedList = this.items.slice(0, 3); this.length = this.items.length; this.changeDetectorRef.detectChanges() ; this.dataSource = new MatTableDataSource<Item>(this.items); this.dataSource.paginator = this.paginator; this.obs = this.dataSource.connect();} );
+    this.update.change.subscribe((query) => { this.query = query; this.items = this.query.results});
+    this.itemService.getItems("iphone", "0").subscribe( (query) =>  { this.query = query ; this.items = query.results; this.pagedList = this.items.slice(0, 3); this.length = this.items.length; this.changeDetectorRef.detectChanges() ; this.dataSource = new MatTableDataSource<Item>(this.items); this.dataSource.paginator = this.paginator; this.obs = this.dataSource.connect();} );
   }
 
   ngOnDestroy() {
